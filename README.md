@@ -37,6 +37,7 @@ For development with HMR: `npm run dev`.
 - [docs/architecture.md](docs/architecture.md) — overall design
 - [docs/protocol.md](docs/protocol.md) — WebSocket message protocol
 - [docs/atlas.md](docs/atlas.md) — texture atlas generation
+- [docs/sounds.md](docs/sounds.md) — sound customization
 - [docs/development.md](docs/development.md) — dev notes, testing, constraints
 
 ## Requirements
