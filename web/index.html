@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mc-web-client</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- 接続画面 -->
+  <div id="connect-screen">
+    <div class="connect-panel">
+      <h1>mc-web-client</h1>
+      <p class="subtitle">ブラウザで動くMinecraftクライアント(実サーバー接続)</p>
+      <label>サーバーアドレス
+        <input id="in-host" type="text" placeholder="localhost または example.com" />
+      </label>
+      <div class="row">
+        <label style="flex:0 0 110px">ポート
+          <input id="in-port" type="text" value="25565" />
+        </label>
+        <label style="flex:1">認証方式
+          <select id="in-auth">
+            <option value="offline">オフライン(ユーザー名のみ)</option>
+            <option value="microsoft">Microsoftアカウント(オンライン鯖)</option>
+          </select>
+        </label>
+      </div>
+      <label id="row-username">ユーザー名 / Microsoftメールアドレス
+        <input id="in-username" type="text" placeholder="Steve" />
+      </label>
+      <label id="row-password" style="display:none">パスワード
+        <input id="in-password" type="password" placeholder="(ローカルバックエンドにのみ送信されます)" />
+      </label>
+      <button id="btn-connect">接続</button>
+      <div id="connect-status"></div>
+      <div class="notes">
+        ※ 対応: バニラ/Paper等のJava版サーバー (1.8〜1.21系)<br />
+        ※ Forge/Fabric等のMODサーバーには対応していません<br />
+        ※ 不正クライアントを禁止しているサーバーでの使用は自己責任です
+      </div>
+    </div>
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div id="game" style="display:none">
+    <canvas id="c" tabindex="0"></canvas>
+
+    <div id="crosshair"></div>
+    <div id="dig-progress"><div id="dig-progress-bar"></div></div>
+
+    <div id="hud-bottom">
+      <div id="status-bars">
+        <div id="health-bar" class="segbar"></div>
+        <div id="food-bar" class="segbar"></div>
+      </div>
+      <div id="hotbar"></div>
+    </div>
+
+    <div id="chat-log"></div>
+
+    <div id="chat-input-wrap" style="display:none">
+      <input id="chat-input" type="text" autocomplete="off"
+             placeholder="チャット入力 (Enterで送信, Escで閉じる)" maxlength="256" />
+    </div>
+
+    <div id="debug" class="hidden"></div>
+
+    <div id="death-screen" style="display:none">
+      <h2>死んでしまった!</h2>
+      <button id="btn-respawn">リスポーン</button>
+    </div>
+
+    <div id="inventory-screen" style="display:none">
+      <div class="inv-panel">
+        <div class="inv-header">
+          <h3>インベントリ</h3>
+          <span class="inv-hint">クリックで選択→別スロットで入替 / E or Escで閉じる</span>
+        </div>
+        <div id="inv-body" class="inv-body">
+          <div id="inv-inventory" class="inv-col">
+            <div id="inv-main" class="inv-grid"></div>
+            <div class="inv-sep"></div>
+            <div id="inv-hotbar" class="inv-grid hotbar-row"></div>
+          </div>
+          <div id="inv-craftcol" class="inv-col">
+            <div id="creative-section" style="display:none">
+          <div class="craft-header">
+            <h3>クリエイティブ: ブロック取得</h3>
+            <span class="inv-hint">クリックでホットバーへ</span>
+          </div>
+          <div id="creative-palette" class="inv-grid"></div>
+          <div class="inv-sep"></div>
+        </div>
+        <div class="craft-header" id="craft2x2-header">
+          <h3>クラフト (2×2)</h3>
+          <button id="btn-refresh-recipes" class="small-btn">更新</button>
+        </div>
+        <div id="craft-list" class="craft-list"><div class="craft-empty">読込中...</div></div>
+        <div id="craft-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="click-to-play" style="display:none">
+      <div>クリックしてプレイ<br /><span class="hint">WASD:移動 / マウス:視点 / 左クリック or Nキー長押し:採掘 / 右クリック:設置<br />E:インベントリ・クラフト / T:チャット / Esc:マウス解放 / F3:デバッグ</span></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

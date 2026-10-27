@@ -1,0 +1,29 @@
+{
+  "name": "mc-web-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser-based Minecraft client that connects to real servers via mineflayer",
+  "main": "server/index.js",
+  "scripts": {
+    "server": "node server/index.js",
+    "web": "npm run dev --prefix web",
+    "dev": "concurrently -n srv,web -c blue,green \"node server/index.js\" \"npm run dev --prefix web\"",
+    "atlas": "node server/atlas.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "minecraft-assets": "^1.19.0",
+    "minecraft-data": "^3.108.0",
+    "minecraft-protocol": "^1.66.0",
+    "mineflayer": "^4.37.1",
+    "pngjs": "^7.0.0",
+    "prismarine-chat": "^1.7.1",
+    "prismarine-viewer": "^1.32.0",
+    "vec3": "^0.1.10",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "puppeteer-core": "^25.9.0"
+  }
+}
